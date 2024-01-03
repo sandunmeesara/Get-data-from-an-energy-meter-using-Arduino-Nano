@@ -10,7 +10,7 @@ ModbusRTUMaster modbus(mySerial, dePin); // serial port, driver enable pin for r
 
 //bool coils[4];
 //bool discreteInputs[4];
-uint16_t holdingRegisters[2];
+uint16_t holdingRegisters[10];
 //uint16_t inputRegisters[4];
 uint32_t total,x;
 
@@ -27,21 +27,33 @@ void loop() {
   //modbus.readDiscreteInputs(1, 0, discreteInputs, 2);              // slave id, starting data address, bool array to place discrete input values, number of discrete inputs to read
   //modbus.readInputRegisters(1, 0, inputRegisters, 2);              // slave id, starting data address, unsigned 16 bit integer array to place input register values, number of input registers to read
 
-  modbus.readHoldingRegisters(1, 0x02, holdingRegisters, 2);
-  total = (holdingRegisters[0] << 16) | holdingRegisters[1];
-  x = total/1000;
-  Serial.println("L1 Current : " + String(x) + "A");
 
-  modbus.readHoldingRegisters(1, 0x28, holdingRegisters, 2);
-  total = (holdingRegisters[0] << 16 ) | holdingRegisters[1];
-  x = total/10;
-  Serial.println("Frequency : " + String(x) + "Hz");
 
-  modbus.readHoldingRegisters(1, 0x2A, holdingRegisters, 2);
-  total = (holdingRegisters[0] << 16 ) | holdingRegisters[1];
-  x = total/10;
-  Serial.println("L1 - L2 Voltage : " + String(x) + "V");
+  modbus.readHoldingRegisters(1, 0x01, holdingRegisters,1);
+  x = holdingRegisters[0];
+  Serial.println("Passcode : " + String(x) + "");
 
+  modbus.readHoldingRegisters(1, 0x07, holdingRegisters,1);
+  x = holdingRegisters[0];
+  Serial.println("Potentia1 transformer ratio (urat) : " + String(x) + "");
+
+  modbus.readHoldingRegisters(1, 0x0B, holdingRegisters,1);
+  x = holdingRegisters[0];
+  Serial.println("Meter type (meter type) : " + String(x) + "");
+
+  modbus.readHoldingRegisters(1, 0x2044, holdingRegisters,2);
+  total = ((uint32_t)holdingRegisters[0]<<16) | holdingRegisters[1];
+  //float floatValue;
+  //memcpy(&floatValue,&total,sizeof(float));
+
+  //x = holdingRegisters[]
+  //x = holdingRegisters[0]<<16 | holdingRegisters[1];
+  Serial.println("Line line voltage (uab) : " + String(total) + "v");
+  
+  for(int i=0;i<2;i++){
+    Serial.println("Code: " + String(holdingRegisters[i]) + "");
+  }
+  
   Serial.println("--------------------------");
   delay(1000);
 
