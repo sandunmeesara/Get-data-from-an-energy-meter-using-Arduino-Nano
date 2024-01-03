@@ -34,7 +34,7 @@ void loop() {
   modbus.readHoldingRegisters(1, 0x2008, holdingRegisters,2);
   total = ((uint32_t)holdingRegisters[0]<<16) | holdingRegisters[1];
   String hexString = String(total, HEX);
-  float floatResult = hexToFloat(hexString);
+  float floatResult = readData();
   floatResult = floatResult * 0.1;
   Serial.println("Phase phase voltage (ub) : " + String(floatResult) + "v");
   
@@ -43,6 +43,13 @@ void loop() {
 
 }
 
+float readData(){
+  modbus.readHoldingRegisters(1, 0x2008, holdingRegisters,2);
+  total = ((uint32_t)holdingRegisters[0]<<16) | holdingRegisters[1];
+  String hexString = String(total, HEX);
+  float floatResult = hexToFloat(hexString);
+  return floatResult;
+}
 
 String decimalToHex(String decimalString) {
   long decimalValue = atol(decimalString.c_str()); // Convert decimal string to long
