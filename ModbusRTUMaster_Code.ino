@@ -61,7 +61,7 @@ void loop() {
   dataAddress = 0x2E;
   Serial.println("Communication Address : " + String(readIntData(dataAddress)));
 
-
+/*
   //print Three Phase line voltage(Uab)
   dataAddress = 0x2000;
   floatResult = readFloatData(dataAddress) * 0.1;
@@ -201,11 +201,24 @@ void loop() {
   dataAddress = 0x1046;
   floatResult = readFloatData(dataAddress);
   Serial.println("Total reactive energy of the third quadrant : " + String(floatResult) + "kvarh");
-
+  
   //print Total reactive energy of the fourth quadrant 
   dataAddress = 0x1050;
   floatResult = readFloatData(dataAddress);
-  Serial.println("Total reactive energy of the fourth quadrant : " + String(floatResult) + "kvarh");
+  Serial.println("Total reactive energy of the fourth quadrant : " + String(floatResult) + "kvarh");*/
+
+  //test
+  /*dataAddress = 0x1050;
+  floatResult = readFloatData(dataAddress);*/
+  modbus.readHoldingRegisters(1, 0x2008, holdingRegisters,2);
+  total = ((uint32_t)holdingRegisters[0]<<16) | holdingRegisters[1];
+  String hexString = String(total, HEX);
+  floatResult = hexToFloat(hexString);
+  Serial.println("Test 1 : " + String(floatResult) + "v");
+
+  dataAddress = 0x2002;
+  floatResult = readFloatData(dataAddress);
+  Serial.println("Test 2 : " + String(floatResult) + "kvarh");
   
   Serial.println("---------------------------------------");
   delay(5000);
@@ -219,7 +232,9 @@ uint16_t readIntData(int dataAddress){
 }
 
 float readFloatData(int dataAddress){
-  modbus.readHoldingRegisters(1, 0x2008, holdingRegisters,2);
+  //Serial.println(dataAddress,HEX);
+  modbus.readHoldingRegisters(1, dataAddress, holdingRegisters,2);
+  //uint32_t word2 = ((uint32_t)holdingRegisters[0]<<16) | holdingRegisters[1];
   total = ((uint32_t)holdingRegisters[0]<<16) | holdingRegisters[1];
   String hexString = String(total, HEX);
   float floatResult = hexToFloat(hexString);
