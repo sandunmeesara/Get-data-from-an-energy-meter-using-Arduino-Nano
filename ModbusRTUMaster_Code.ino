@@ -61,116 +61,111 @@ void loop() {
   dataAddress = 0x2E;
   Serial.println("Communication Address : " + String(readIntData(dataAddress)));
 
-/*
+
   //print Three Phase line voltage(Uab)
   dataAddress = 0x2000;
   floatResult = readFloatData(dataAddress) * 0.1;
-  Serial.println("Three Phase line voltage(Uab) : " + String(floatResult) + "v");
+  Serial.println("Uab : " + String(floatResult) + "v");
 
   //print Three Phase line voltage(Ubc)
   dataAddress = 0x2002;
   floatResult = readFloatData(dataAddress) * 0.1;
-  Serial.println("Three Phase line voltage(Ubc) : " + String(floatResult) + "v");
+  Serial.println("Ubc : " + String(floatResult) + "v");
 
   //print Three Phase line voltage(Uca)
   dataAddress = 0x2004;
   floatResult = readFloatData(dataAddress) * 0.1;
-  Serial.println("Three Phase line voltage(Uca) : " + String(floatResult) + "v");
+  Serial.println("Uca : " + String(floatResult) + "v");
 
   //print Three Phase Phase voltage(Ua)
   dataAddress = 0x2006;
   floatResult = readFloatData(dataAddress) * 0.1;
-  Serial.println("Three Phase Phase voltage(Ua) : " + String(floatResult) + "v");
+  Serial.println("Ua : " + String(floatResult) + "v");
 
   //print Three Phase Phase voltage(Ub)
   dataAddress = 0x2008;
   floatResult = readFloatData(dataAddress) * 0.1;
-  Serial.println("Three Phase Phase voltage(Ub) : " + String(floatResult) + "v");
+  Serial.println("Ub : " + String(floatResult) + "v");
 
   //print Three Phase Phase voltage(Uc)
   dataAddress = 0x200A;
   floatResult = readFloatData(dataAddress) * 0.1;
-  Serial.println("Three Phase Phase voltage(Uc) : " + String(floatResult) + "v");
+  Serial.println("Uc : " + String(floatResult) + "v");
 
   //print Three Phase Current(Ia)
   dataAddress = 0x200C;
   floatResult = readFloatData(dataAddress) * 0.001;
-  Serial.println("Three Phase Current(Ia) : " + String(floatResult) + "A");
+  Serial.println("Ia : " + String(floatResult) + "A");
 
   //print Three Phase Current(Ib)
   dataAddress = 0x200E;
   floatResult = readFloatData(dataAddress) * 0.001;
-  Serial.println("Three Phase Current(Ib) : " + String(floatResult) + "A");
+  Serial.println("Ib : " + String(floatResult) + "A");
 
   //print Three Phase Current(Ic)
   dataAddress = 0x2010;
   floatResult = readFloatData(dataAddress) * 0.001;
-  Serial.println("Three Phase Current(Ic) : " + String(floatResult) + "A");
+  Serial.println("Ic : " + String(floatResult) + "A");
 
   //print Combined Active Power(Pt)
   dataAddress = 0x2012;
   floatResult = readFloatData(dataAddress) * 0.1;
-  Serial.println("Combined Active Power(Pt) : " + String(floatResult) + "W");
+  Serial.println("Pt : " + String(floatResult) + "W");
 
   //print A Phase active power(Pa)
   dataAddress = 0x2014;
   floatResult = readFloatData(dataAddress) * 0.1;
-  Serial.println("A Phase active power(Pa) : " + String(floatResult) + "W");
+  Serial.println("Pa : " + String(floatResult) + "W");
 
   //print B Phase active power(Pb)
   dataAddress = 0x2016;
   floatResult = readFloatData(dataAddress) * 0.1;
-  Serial.println("B Phase active power(Pb) : " + String(floatResult) + "W");
+  Serial.println("Pb : " + String(floatResult) + "W");
 
   //print C Phase active power(Pc)
   dataAddress = 0x2018;
   floatResult = readFloatData(dataAddress) * 0.1;
-  Serial.println("C Phase active power(Pc) : " + String(floatResult) + "W");
-
-  //print C Phase active power(Pc)
-  dataAddress = 0x2018;
-  floatResult = readFloatData(dataAddress) * 0.1;
-  Serial.println("C Phase active power(Pc) : " + String(floatResult) + "W");
+  Serial.println("Pc : " + String(floatResult) + "W");
 
   //print Combined Reactive Power(Qt)
   dataAddress = 0x201A;
   floatResult = readFloatData(dataAddress) * 0.1;
-  Serial.println("Combined Reactive Power(Qt) : " + String(floatResult) + "var");
+  Serial.println("Qt : " + String(floatResult) + "var");
 
   //print A Phase Reactive Power(Qa)
   dataAddress = 0x201C;
   floatResult = readFloatData(dataAddress) * 0.1;
-  Serial.println("A Phase Reactive Power(Qa) : " + String(floatResult) + "var");
+  Serial.println("Qa : " + String(floatResult) + "var");
 
   //print B Phase Reactive Power(Qb)
   dataAddress = 0x201E;
   floatResult = readFloatData(dataAddress) * 0.1;
-  Serial.println("B Phase Reactive Power(Qb) : " + String(floatResult) + "var");
+  Serial.println("Qb : " + String(floatResult) + "var");
 
   //print C Phase Reactive Power(Qc)
   dataAddress = 0x2020;
   floatResult = readFloatData(dataAddress) * 0.1;
-  Serial.println("C Phase Reactive Power(Qc) : " + String(floatResult) + "var");
+  Serial.println("Qc : " + String(floatResult) + "var");
 
   //print Combined Power Factor(PFt)
   dataAddress = 0x202A;
   floatResult = readFloatData(dataAddress) * 0.001;
-  Serial.println("Combined Power Factor(PFt) : " + String(floatResult));
+  Serial.println("PFt : " + String(floatResult));
 
   //print A Phase Power Factor(PFa)
   dataAddress = 0x202C;
   floatResult = readFloatData(dataAddress) * 0.001;
-  Serial.println("A Phase Power Factor(PFa) : " + String(floatResult));
+  Serial.println("PFa : " + String(floatResult));
 
   //print B Phase Power Factor(PFb)
   dataAddress = 0x202E;
   floatResult = readFloatData(dataAddress) * 0.001;
-  Serial.println("B Phase Power Factor(PFb) : " + String(floatResult));
+  Serial.println("PFb : " + String(floatResult));
 
   //print C Phase Power Factor(PFc)
   dataAddress = 0x2030;
   floatResult = readFloatData(dataAddress) * 0.001;
-  Serial.println("C Phase Power Factor(PFc) : " + String(floatResult));
+  Serial.println("PFc : " + String(floatResult));
 
   //print Frequency
   dataAddress = 0x2044;
@@ -205,20 +200,7 @@ void loop() {
   //print Total reactive energy of the fourth quadrant 
   dataAddress = 0x1050;
   floatResult = readFloatData(dataAddress);
-  Serial.println("Total reactive energy of the fourth quadrant : " + String(floatResult) + "kvarh");*/
-
-  //test
-  /*dataAddress = 0x1050;
-  floatResult = readFloatData(dataAddress);*/
-  modbus.readHoldingRegisters(1, 0x2008, holdingRegisters,2);
-  total = ((uint32_t)holdingRegisters[0]<<16) | holdingRegisters[1];
-  String hexString = String(total, HEX);
-  floatResult = hexToFloat(hexString);
-  Serial.println("Test 1 : " + String(floatResult) + "v");
-
-  dataAddress = 0x2002;
-  floatResult = readFloatData(dataAddress);
-  Serial.println("Test 2 : " + String(floatResult) + "kvarh");
+  Serial.println("Total reactive energy of the fourth quadrant : " + String(floatResult) + "kvarh");
   
   Serial.println("---------------------------------------");
   delay(5000);
